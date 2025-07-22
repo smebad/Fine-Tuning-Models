@@ -33,3 +33,9 @@ lora_config = LoraConfig(
   bias = None, # No bias in LoRA layers
   task_type = TaskType.CAUSAL_LM # Task type for causal language modeling
 )
+
+# Applying the LoRA configuration to the model
+model = get_peft_model(model, lora_config)
+
+# Loading the GSM8K dataset from the Hugging Face Hub
+data = load_dataset('openai/gsm8k', 'main', split = 'train[:200]')
