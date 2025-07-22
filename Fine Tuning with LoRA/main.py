@@ -39,3 +39,20 @@ model = get_peft_model(model, lora_config)
 
 # Loading the GSM8K dataset from the Hugging Face Hub
 data = load_dataset('openai/gsm8k', 'main', split = 'train[:200]')
+
+# Tokenization function to prepare the dataset for training
+def tokenize_function(batch):
+    texts = [f"Instruction:\n{batch['question']}\n### Response: \n{batch['answer']}" # Format the input text 
+             for instruction, out in zip(batch['question'], batch['answer']) # Combine question and answer
+    ]
+    
+    tokens = tokenizer(
+        texts, # Tokenize the formatted texts
+        padding = 'max_length', # Pad to max length
+        truncation = True, # Truncate if necessary
+        return_tensors = 'pt' # Return PyTorch tensors
+    )
+
+    tokens['labels'] = tokens['input_ids'].clone() # Clone input IDs for labels
+
+    return tokens
