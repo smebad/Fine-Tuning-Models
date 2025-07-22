@@ -23,3 +23,13 @@ model = AutoModelForCausalLM.from_pretrained(
   device_map='auto', # Automatically map model to available devices
   trust_remote_code=True # Trust remote code for model loading
 )
+
+# Defining the LoRA configuration as per the original LoRA paper
+lora_config = LoraConfig(
+  r = 8, # Rank of the LoRA layers
+  lora_alpha = 16, # Scaling factor for LoRA
+  lora_dropout = 0.05, # Dropout rate for LoRA layers so they don't overfit
+  target_modules = ['q_proj', 'v_proj'], # Target modules for LoRA
+  bias = None, # No bias in LoRA layers
+  task_type = TaskType.CAUSAL_LM # Task type for causal language modeling
+)
