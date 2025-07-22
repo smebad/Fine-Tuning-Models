@@ -59,3 +59,18 @@ def tokenize_function(batch):
 
 # Tokenizing the dataset using the defined function
 tokenized_data = data.map(tokenize_function, batched=True, remove_columns=data.column_names)
+
+# Setting up training arguments
+training_args = TrainingArguments(
+    output_dir = './lora-tinylama-math', # Directory to save the model
+    per_device_train_batch_size= 1, # Batch size for training
+    gradient_accumulation_steps = 4, # Gradient accumulation steps
+    learning_rate = 1e-3, # Learning rate for training
+    num_train_epochs = 30, # Number of training epochs
+    fp16 = True, # Use mixed precision training
+    logging_steps = 10, # Log every 10 steps
+    save_strategy = 'epoch', # Save the model at the end of each epoch
+    report_to = 'none', # Disable reporting to external services
+    remove_unused_columns = False, # Do not remove unused columns
+    label_names = ['labels'], # Specify label names for training
+)
