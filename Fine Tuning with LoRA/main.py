@@ -56,3 +56,6 @@ def tokenize_function(batch):
     tokens['labels'] = tokens['input_ids'].clone() # Clone input IDs for labels
 
     return tokens
+
+# Tokenizing the dataset using the defined function
+tokenized_data = data.map(tokenize_function, batched=True, remove_columns=data.column_names)
