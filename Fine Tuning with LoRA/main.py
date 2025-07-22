@@ -74,3 +74,11 @@ training_args = TrainingArguments(
     remove_unused_columns = False, # Do not remove unused columns
     label_names = ['labels'], # Specify label names for training
 )
+
+# Initializing the Trainer with the model, training arguments, and tokenized dataset
+trainer = Trainer(
+    model = model, # The model to train
+    args = training_args, # Training arguments
+    train_dataset = tokenized_data, # Tokenized dataset for training
+    processing_class = tokenizer, # Tokenizer for processing inputs
+)
