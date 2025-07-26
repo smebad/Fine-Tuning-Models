@@ -30,7 +30,7 @@ lora_config = LoraConfig(
   lora_alpha = 16, # Scaling factor for LoRA
   lora_dropout = 0.05, # Dropout rate for LoRA layers so they don't overfit
   target_modules = ['q_proj', 'v_proj'], # Target modules for LoRA
-  bias = None, # No bias in LoRA layers
+  bias = 'none', # No bias in LoRA layers
   task_type = TaskType.CAUSAL_LM # Task type for causal language modeling
 )
 
