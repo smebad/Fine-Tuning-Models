@@ -6,7 +6,7 @@ from datasets import load_dataset
 from peft import LoraConfig, get_peft_model, TaskType
 
 # Loading the model and tokenizer
-model_name = 'TinyLlama-1.1B-Chat-v1.0'
+model_name = 'TinyLlama/TinyLlama-1.1B-Chat-v1.0'
 tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True) # Load the tokenizer with remote code trust
 
 # bitsandbytes configuration
