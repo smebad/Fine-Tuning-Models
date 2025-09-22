@@ -1,0 +1,15 @@
+# Ignore training outputs
+results/
+distilbert-finetuned/
+
+# Ignore large model artifacts
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.tfevents.*
+
+# Ignore temporary files
+.ipynb_checkpoints/
+__pycache__/
+*.log
